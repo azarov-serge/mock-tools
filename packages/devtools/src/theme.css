@@ -1,0 +1,51 @@
+/* Shared Chrome DevTools–inspired tokens for @mock-tools/devtools */
+[data-mock-tools-panel],
+[data-mock-tools-launcher] {
+  --mt-bg: #202124;
+  --mt-surface: #292a2d;
+  --mt-surface-2: #35363a;
+  --mt-input: #1e1f22;
+  --mt-border: #3c4043;
+  --mt-border-strong: #5f6368;
+  --mt-text: #e8eaed;
+  --mt-text-muted: #9aa0a6;
+  --mt-text-dim: #80868b;
+  --mt-primary: #1a73e8;
+  --mt-primary-hover: #1765cc;
+  --mt-primary-soft: rgba(26, 115, 232, 0.2);
+  --mt-ok: #34a853;
+  --mt-error: #ea4335;
+  --mt-radius: 4px;
+  --mt-control-height: 32px;
+  --mt-control-px: 10px;
+  --mt-font:
+    Roboto,
+    'Segoe UI',
+    system-ui,
+    -apple-system,
+    sans-serif;
+}
+
+/* Beat host-app / UA input sizing inside the panel */
+[data-mock-tools-panel] input[data-mt-control],
+[data-mock-tools-panel] select[data-mt-control],
+[data-mock-tools-panel] button[data-mt-control] {
+  box-sizing: border-box;
+  height: var(--mt-control-height);
+  min-height: var(--mt-control-height);
+  max-height: var(--mt-control-height);
+  margin: 0;
+  padding-block: 0;
+  padding-inline: var(--mt-control-px);
+  font-size: 12px;
+  line-height: 1;
+}
+
+[data-mock-tools-panel] input[data-mt-control]::-webkit-search-decoration,
+[data-mock-tools-panel] input[data-mt-control]::-webkit-search-cancel-button,
+[data-mock-tools-panel] input[data-mt-control]::-webkit-search-results-button,
+[data-mock-tools-panel] input[data-mt-control]::-webkit-search-results-decoration {
+  -webkit-appearance: none;
+  appearance: none;
+  display: none;
+}

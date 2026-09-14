@@ -1,0 +1,49 @@
+{
+  "name": "@mock-tools/factory",
+  "version": "0.2.0",
+  "description": "Standalone mock data factory: models, properties, templates, pagination.",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "README.ru.md",
+    "docs"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/azarov-serge/mock-tools.git",
+    "directory": "packages/factory"
+  },
+  "homepage": "https://github.com/azarov-serge/mock-tools/tree/main/packages/factory",
+  "bugs": {
+    "url": "https://github.com/azarov-serge/mock-tools/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "devDependencies": {
+    "typescript": "6.0.3",
+    "vitest": "^2.1.8"
+  },
+  "keywords": [
+    "mock",
+    "factory",
+    "fixture",
+    "json",
+    "typescript"
+  ]
+}

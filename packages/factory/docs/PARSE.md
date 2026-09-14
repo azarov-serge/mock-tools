@@ -1,0 +1,47 @@
+# `Model.parse`
+
+Build a `Model` from a sample object or JSON string.
+
+[Русская версия](./PARSE.ru.md) · [README](../README.md)
+
+## Modes
+
+Default mode: **`AS-IS`**.
+
+### AS-IS
+
+Values become constants — generate reproduces the sample shape/values.
+
+```ts
+const asIs = Model.parse({ id: 7, title: 'Task', tags: ['a', 'b'] }, { mode: 'AS-IS', seed: 1 });
+asIs.generateItem(); // { id: 7, title: 'Task', tags: ['a', 'b'] }
+```
+
+### Similar
+
+Heuristics infer generators (uuid, email, dates, numeric ranges, …).
+
+```ts
+const similar = Model.parse(
+  { id: '550e8400-e29b-41d4-a716-446655440000', email: 'a@b.com' },
+  { mode: 'Similar', seed: 2 },
+);
+```
+
+## Per-field overrides
+
+```ts
+Model.parse(sample, {
+  mode: 'AS-IS',
+  fields: {
+    email: 'Similar',
+    id: property.id('number'),
+  },
+});
+```
+
+Field override: mode name (`'AS-IS' | 'Similar'`) or an explicit `Property`.
+
+## Errors
+
+Invalid JSON strings **throw**.

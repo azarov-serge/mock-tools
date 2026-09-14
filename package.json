@@ -1,0 +1,23 @@
+{
+  "name": "mock-tools",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "examples/*"
+  ],
+  "scripts": {
+    "build": "npm run build -w @mock-tools/factory && npm run build -w @mock-tools/api && npm run build -w @mock-tools/devtools",
+    "typecheck": "npm run typecheck -w @mock-tools/factory && npm run typecheck -w @mock-tools/api && npm run typecheck -w @mock-tools/devtools && npm run typecheck -w @mock-tools/example-monitoring",
+    "test": "npm run test -w @mock-tools/factory && npm run test -w @mock-tools/api && npm run test -w @mock-tools/devtools",
+    "test:watch": "npm run test:watch -w @mock-tools/factory",
+    "example": "npm run dev -w @mock-tools/example-monitoring",
+    "format": "prettier --write \"packages/**/*.{ts,tsx,js,json,md}\" \"examples/**/*.{ts,tsx,js,json,md,css,html}\" \"*.md\" \"*.json\" --ignore-path .gitignore",
+    "format:check": "prettier --check \"packages/**/*.{ts,tsx,js,json,md}\" \"examples/**/*.{ts,tsx,js,json,md,css,html}\" \"*.md\" \"*.json\" --ignore-path .gitignore"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "prettier": "^3.9.6"
+  }
+}

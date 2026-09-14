@@ -1,0 +1,14 @@
+node_modules/
+dist/
+*.tsbuildinfo
+.DS_Store
+coverage/
+.arch
+.cursor/
+
+# Служебные / внутренние материалы — не в git
+QUESTION.md
+**/QUESTION.md
+*.archive/
+**/archive/
+**/.archive/

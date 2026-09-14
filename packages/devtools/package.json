@@ -1,0 +1,64 @@
+{
+  "name": "@mock-tools/devtools",
+  "version": "0.2.0",
+  "description": "React DevTools UI for @mock-tools/api: launcher, Mocks, Settings.",
+  "license": "MIT",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./style.css": "./dist/style.css"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "README.ru.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/azarov-serge/mock-tools.git",
+    "directory": "packages/devtools"
+  },
+  "homepage": "https://github.com/azarov-serge/mock-tools/tree/main/packages/devtools",
+  "bugs": {
+    "url": "https://github.com/azarov-serge/mock-tools/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "vite build && tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "peerDependencies": {
+    "@mock-tools/api": "^0.2.0",
+    "@mock-tools/factory": "^0.2.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "devDependencies": {
+    "@mock-tools/api": "*",
+    "@mock-tools/factory": "*",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "@vitejs/plugin-react": "^4.3.4",
+    "jsdom": "^25.0.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "typescript": "5.1.6",
+    "vite": "^5.4.11",
+    "vitest": "^2.1.8"
+  },
+  "keywords": [
+    "mock",
+    "devtools",
+    "react",
+    "typescript"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "emitDeclarationOnly": true,
+    "declaration": true,
+    "declarationMap": true,
+    "outDir": "./dist"
+  },
+  "exclude": ["dist", "node_modules", "**/*.test.ts", "**/*.test.tsx", "vite.config.ts", "vitest.config.ts"]
+}

@@ -1,0 +1,31 @@
+{
+  "name": "@mock-tools/example-monitoring",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Live host for factory + api + devtools (monitoring demo).",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -p tsconfig.json --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@mantine/core": "7.17.8",
+    "@mantine/hooks": "7.17.8",
+    "@mock-tools/api": "*",
+    "@mock-tools/devtools": "*",
+    "@mock-tools/factory": "*",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-router-dom": "6.30.6",
+    "web-idb-client": "1.0.1"
+  },
+  "devDependencies": {
+    "@types/react": "18.3.18",
+    "@types/react-dom": "18.3.5",
+    "@vitejs/plugin-react": "4.3.4",
+    "typescript": "5.1.6",
+    "vite": "5.4.11"
+  }
+}
