@@ -12,6 +12,8 @@ import { property } from '@mock-tools/factory';
 
 Каждый билдер возвращает `Property` для `Model.build({ … })`.
 
+`generateItem()` / `generateList()` всегда отдают **обычный JSON** (как в `.json`-файле или в HTTP-теле). Ниже у каждого билдера — **Пример JSON** типичного значения поля (или небольшого объекта).
+
 ## Общий конфиг
 
 Большинство билдеров принимают общий `PropertyConfig` (плюс опции типа):
@@ -36,6 +38,24 @@ property.id('index'); // индекс элемента (с 1)
 property.id(42); // константа
 ```
 
+**Пример JSON** (значения полей):
+
+```json
+"550e8400-e29b-41d4-a716-446655440000"
+```
+
+```json
+1
+```
+
+```json
+3
+```
+
+```json
+42
+```
+
 ## `property.string` / `property.template`
 
 ```ts
@@ -44,6 +64,24 @@ property.string(['A', 'B']); // случайный выбор (с повтора
 property.string(['A', 'B', 'C'], { unique: true }); // без повторов в одном ctx / generateList
 property.string('X-%n%'); // шаблон
 property.template('User-%index%-%n%%n%');
+```
+
+**Пример JSON:**
+
+```json
+"Task"
+```
+
+```json
+"B"
+```
+
+```json
+"X-7"
+```
+
+```json
+"User-1-42"
 ```
 
 ### `unique`
@@ -84,6 +122,12 @@ property.template('#A-%index%-%DD%.%MM%.%YYYY% %HH%:%mm%:%ss%', {
 });
 ```
 
+**Пример JSON:**
+
+```json
+"#A-1-29.08.2026 12:00:00"
+```
+
 ## `property.number`
 
 Три режима: **непрерывный** (`min` / `max`), **шаговый** (`from` / `to` / `step`) или **pool** (`number[]`).
@@ -102,6 +146,24 @@ property.number({ from: 1, to: 2, step: 0.25, integer: false });
 // Pool: случайный выбор из списка
 property.number([22, 80, 443]);
 property.number([22, 80, 443], { unique: true }); // без повторов в одном ctx / generateList
+```
+
+**Пример JSON:**
+
+```json
+4
+```
+
+```json
+0.37
+```
+
+```json
+6
+```
+
+```json
+443
 ```
 
 | Опция     | Default | Смысл                                                  |
@@ -130,6 +192,36 @@ property.ip({ private: true }); // RFC1918: 10/8, 172.16/12, 192.168/16
 property.port(); // целое 1..65535
 property.port({ min: 8000, max: 8999 });
 property.const(value);
+```
+
+**Пример JSON:**
+
+```json
+true
+```
+
+```json
+"user42@example.com"
+```
+
+```json
+"+15551234567"
+```
+
+```json
+"203.0.113.42"
+```
+
+```json
+"10.0.0.15"
+```
+
+```json
+8443
+```
+
+```json
+"fixed"
 ```
 
 | Билдер | Результат | Заметки |
@@ -168,6 +260,20 @@ property.date.random(); // случайно в дефолтном окне во�
 property.date.random(iso, ±N, unit?);
 ```
 
+**Пример JSON** (всегда ISO UTC **строка**, не объект `Date`):
+
+```json
+"2024-03-15T08:22:11.000Z"
+```
+
+```json
+"2024-01-03T00:00:00.000Z"
+```
+
+```json
+"2026-09-05T12:00:00.000Z"
+```
+
 | Опция | Смысл |
 | ----- | ----- |
 | `min` / `max` | Непрерывный: случайный момент в `[min, max]` |
@@ -191,6 +297,25 @@ property.object({
   city: property.string(['Berlin', 'Lisbon']),
   zip: property.template('%n%%n%%n%%n%%n%'),
 });
+```
+
+**Пример JSON** (`array`):
+
+```json
+["news", "tech"]
+```
+
+```json
+["a", "b", "a"]
+```
+
+**Пример JSON** (`object`):
+
+```json
+{
+  "city": "Berlin",
+  "zip": "10405"
+}
 ```
 
 Опции массива: `length` **или** `min` / `max`.

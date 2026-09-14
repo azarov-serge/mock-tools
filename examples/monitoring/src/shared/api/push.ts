@@ -1,5 +1,6 @@
 import type { Api } from '@mock-tools/api';
 import type { AppContext } from './db';
+import { generateServerMetrics } from './seeds/models';
 
 type WsLike = { send: (data: string) => void };
 const registrationSockets = new Set<WsLike>();
@@ -30,25 +31,7 @@ export function registerPush(api: Api<AppContext>): void {
           connection.close();
           return;
         }
-        connection.send({
-          serverId: server.id,
-          at: new Date().toISOString(),
-          cpu: Math.round(Math.random() * 100),
-          ram: {
-            usedMb: 2048 + Math.round(Math.random() * 2048),
-            totalMb: 8192,
-          },
-          raid: Math.random() > 0.9 ? 'degraded' : 'ok',
-          diskIo: {
-            readMBs: +(Math.random() * 120).toFixed(1),
-            writeMBs: +(Math.random() * 80).toFixed(1),
-          },
-          network: {
-            inMbps: +(Math.random() * 500).toFixed(1),
-            outMbps: +(Math.random() * 300).toFixed(1),
-          },
-          uptimeSec: Math.floor(Date.now() / 1000) % 1_000_000,
-        });
+        connection.send(generateServerMetrics(server.id));
       })();
     }, 2000);
 

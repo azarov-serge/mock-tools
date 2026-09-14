@@ -12,6 +12,8 @@ import { property } from '@mock-tools/factory';
 
 Each builder returns a `Property` used inside `Model.build({ … })`.
 
+`generateItem()` / `generateList()` always return **plain JSON** values (what you would put in a `.json` file or send over HTTP). Below, every builder has an **Example JSON** of a typical field value (or a small object when several fields are shown together).
+
 ## Shared config
 
 Most builders accept a shared `PropertyConfig` (merged with type-specific options):
@@ -36,6 +38,24 @@ property.id('index'); // list/item index (1-based)
 property.id(42); // constant
 ```
 
+**Example JSON** (field values):
+
+```json
+"550e8400-e29b-41d4-a716-446655440000"
+```
+
+```json
+1
+```
+
+```json
+3
+```
+
+```json
+42
+```
+
 ## `property.string` / `property.template`
 
 ```ts
@@ -44,6 +64,24 @@ property.string(['A', 'B']); // random pick (with replacement)
 property.string(['A', 'B', 'C'], { unique: true }); // no reuse in one ctx / generateList
 property.string('X-%n%'); // template shorthand
 property.template('User-%index%-%n%%n%');
+```
+
+**Example JSON:**
+
+```json
+"Task"
+```
+
+```json
+"B"
+```
+
+```json
+"X-7"
+```
+
+```json
+"User-1-42"
 ```
 
 ### `unique`
@@ -84,6 +122,12 @@ property.template('#A-%index%-%DD%.%MM%.%YYYY% %HH%:%mm%:%ss%', {
 });
 ```
 
+**Example JSON:**
+
+```json
+"#A-1-29.08.2026 12:00:00"
+```
+
 ## `property.number`
 
 Three modes: **continuous** (`min` / `max`), **stepped** (`from` / `to` / `step`), or **pool** (`number[]`).
@@ -102,6 +146,24 @@ property.number({ from: 1, to: 2, step: 0.25, integer: false });
 // Pool: random pick from an explicit list
 property.number([22, 80, 443]);
 property.number([22, 80, 443], { unique: true }); // no reuse in one ctx / generateList
+```
+
+**Example JSON:**
+
+```json
+4
+```
+
+```json
+0.37
+```
+
+```json
+6
+```
+
+```json
+443
 ```
 
 | Option    | Default | Meaning                                                    |
@@ -130,6 +192,36 @@ property.ip({ private: true }); // RFC1918: 10/8, 172.16/12, 192.168/16
 property.port(); // integer 1..65535
 property.port({ min: 8000, max: 8999 });
 property.const(value);
+```
+
+**Example JSON:**
+
+```json
+true
+```
+
+```json
+"user42@example.com"
+```
+
+```json
+"+15551234567"
+```
+
+```json
+"203.0.113.42"
+```
+
+```json
+"10.0.0.15"
+```
+
+```json
+8443
+```
+
+```json
+"fixed"
 ```
 
 | Builder | Output | Notes |
@@ -168,6 +260,20 @@ property.date.random(); // random in a default window around now
 property.date.random(iso, ±N, unit?);
 ```
 
+**Example JSON** (always an ISO UTC **string**, not a `Date` object):
+
+```json
+"2024-03-15T08:22:11.000Z"
+```
+
+```json
+"2024-01-03T00:00:00.000Z"
+```
+
+```json
+"2026-09-05T12:00:00.000Z"
+```
+
 | Option | Meaning |
 | ------ | ------- |
 | `min` / `max` | Continuous: random instant in `[min, max]` |
@@ -191,6 +297,25 @@ property.object({
   city: property.string(['Berlin', 'Lisbon']),
   zip: property.template('%n%%n%%n%%n%%n%'),
 });
+```
+
+**Example JSON** (`array`):
+
+```json
+["news", "tech"]
+```
+
+```json
+["a", "b", "a"]
+```
+
+**Example JSON** (`object`):
+
+```json
+{
+  "city": "Berlin",
+  "zip": "10405"
+}
 ```
 
 Array options: `length` **or** `min` / `max`.

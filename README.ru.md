@@ -20,6 +20,27 @@ Monorepo библиотек для in-process моков на фронте (бе
 
 Логин: `root` / `admin`. Лаунчер DevTools — внизу слева (хоткей **Ctrl+Shift+M** / **⌘⇧M**).
 
+## Справка — как подключить к своему приложению
+
+На выходе всегда обычный **JSON** (объекты / массивы / строки / числа / boolean / `null`). Специальных runtime-типов нет.
+
+1. **Установка** — `npm i @mock-tools/factory @mock-tools/api @mock-tools/devtools` (+ `import '@mock-tools/devtools/style.css'`).
+2. **Описать данные** — `Model.build({ id: property.id('uuid'), … })` или `Model.parse(jsonString)`. Генерация → JSON-объекты.
+3. **Создать `Api`** — `new Api({ context, delay, dbStatus?, storeAdapter?, seedGenerator? })`.
+4. **Зарегистрировать** — resources (`api.register`) и/или HTTP (`api.route.*`) и при необходимости SSE/WS.
+5. **Вызовы из UI** — `api.handle('/path', { method, body })` или `api.resource.method()` вместо `fetch`. С **React Query** хуки и ключи не трогать — менять только `queryFn` / `mutationFn`.
+6. **DevTools** — `<DevTools api={api} />` в корневом layout.
+
+Полное руководство (архитектура, шаги, JSON, DevTools, Push, React Query): [`examples/monitoring/README.ru.md`](examples/monitoring/README.ru.md).
+
+| Тема | Где |
+| ---- | --- |
+| Билдеры `property` + **примеры JSON** | [`packages/factory/docs/PROPERTY.ru.md`](packages/factory/docs/PROPERTY.ru.md) |
+| `Model` / списки / seed | [`packages/factory/docs/MODEL.ru.md`](packages/factory/docs/MODEL.ru.md) |
+| `Api` resources и HTTP | [`packages/api/README.ru.md`](packages/api/README.ru.md) |
+| Панель DevTools | [`packages/devtools/README.ru.md`](packages/devtools/README.ru.md) |
+| Сквозной example | [`examples/monitoring/README.ru.md`](examples/monitoring/README.ru.md) |
+
 ## Скрипты
 
 ```bash

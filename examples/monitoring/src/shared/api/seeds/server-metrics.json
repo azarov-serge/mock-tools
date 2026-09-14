@@ -1,0 +1,19 @@
+{
+  "serverId": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+  "at": "2026-09-14T12:00:00.000Z",
+  "cpu": 42,
+  "ram": {
+    "usedMb": 4096,
+    "totalMb": 8192
+  },
+  "raid": "ok",
+  "diskIo": {
+    "readMBs": 12.3,
+    "writeMBs": 4.1
+  },
+  "network": {
+    "inMbps": 100.5,
+    "outMbps": 80.2
+  },
+  "uptimeSec": 12345
+}

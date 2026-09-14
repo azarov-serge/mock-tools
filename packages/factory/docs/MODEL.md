@@ -38,6 +38,25 @@ model.generateList(count, { startIndex?, seed?, now?, ctx? });
 - `index` / `startIndex` are **1-based**.
 - List items share one RNG stream so ids stay unique within a run.
 
+**Example JSON** — one `generateItem()` (plain object, ready for `JSON.stringify` / HTTP / IndexedDB):
+
+```json
+{
+  "id": 1,
+  "name": "User-1",
+  "email": "user1@example.com"
+}
+```
+
+**Example JSON** — `generateList(2)`:
+
+```json
+[
+  { "id": 1, "name": "User-1", "email": "a@example.com" },
+  { "id": 2, "name": "User-2", "email": "b@example.com" }
+]
+```
+
 ### Seed behavior
 
 - **Without** `seed`: each `generateItem()` / `generateList()` uses a **fresh** RNG (results differ across calls).

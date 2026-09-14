@@ -38,6 +38,25 @@ model.generateList(count, { startIndex?, seed?, now?, ctx? });
 - `index` / `startIndex` — **с 1**.
 - Элементы списка делят один поток RNG, чтобы id не пересекались в прогоне.
 
+**Пример JSON** — один `generateItem()` (обычный объект: `JSON.stringify` / HTTP / IndexedDB):
+
+```json
+{
+  "id": 1,
+  "name": "User-1",
+  "email": "user1@example.com"
+}
+```
+
+**Пример JSON** — `generateList(2)`:
+
+```json
+[
+  { "id": 1, "name": "User-1", "email": "a@example.com" },
+  { "id": 2, "name": "User-2", "email": "b@example.com" }
+]
+```
+
 ### Seed
 
 - **Без** `seed`: каждый `generateItem()` / `generateList()` — **новый** RNG.

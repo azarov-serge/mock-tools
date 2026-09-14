@@ -31,6 +31,21 @@ pager.toString(); // JSON.stringify(pager.toJSON())
 // JSON.stringify(pager) also uses toJSON()
 ```
 
+**Example JSON** — `pager.generate(1)` / default `toJSON()` shape (illustrative):
+
+```json
+{
+  "page": 1,
+  "limit": 10,
+  "total": 50,
+  "items": [
+    { "id": 1, "action": "login" },
+    { "id": 2, "action": "update" }
+  ],
+  "last_id": 10
+}
+```
+
 ## Cursor
 
 `last_id` defaults to the last item’s field from `lastIdPath`. Included in default `toJSON()` for cursor-style clients.

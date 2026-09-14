@@ -31,6 +31,21 @@ pager.toString(); // JSON.stringify(pager.toJSON())
 // JSON.stringify(pager) тоже вызывает toJSON()
 ```
 
+**Пример JSON** — `pager.generate(1)` / дефолтная форма `toJSON()` (иллюстрация):
+
+```json
+{
+  "page": 1,
+  "limit": 10,
+  "total": 50,
+  "items": [
+    { "id": 1, "action": "login" },
+    { "id": 2, "action": "update" }
+  ],
+  "last_id": 10
+}
+```
+
 ## Курсор
 
 `last_id` по умолчанию — поле последнего элемента по `lastIdPath`. Есть в дефолтном `toJSON()`.
