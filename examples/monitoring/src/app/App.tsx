@@ -19,10 +19,13 @@ function LoginRoute() {
   return <LoginPage />;
 }
 
+/** Vite `base` (`/` locally, `/mock-tools/` on GitHub Pages). */
+const routerBasename = import.meta.env.BASE_URL.replace(/\/$/, '') || '/';
+
 export function App() {
   return (
     <AppProviders>
-      <BrowserRouter>
+      <BrowserRouter basename={routerBasename === '/' ? undefined : routerBasename}>
         <Routes>
           <Route path="/login" element={<LoginRoute />} />
           <Route element={<RequireAuth />}>

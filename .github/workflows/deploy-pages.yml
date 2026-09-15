@@ -27,6 +27,9 @@ jobs:
         run: npm run build -w @mock-tools/example-monitoring
         env:
           GITHUB_PAGES: 'true'
+      # SPA deep links / refresh: GH Pages serves 404.html for missing paths.
+      - name: SPA fallback for GitHub Pages
+        run: cp examples/monitoring/dist/index.html examples/monitoring/dist/404.html
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4
         with:
