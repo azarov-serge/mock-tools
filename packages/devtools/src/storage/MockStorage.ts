@@ -1,5 +1,6 @@
 import { KeyStorage } from './KeyStorage.js';
-import type { Corner, DevToolsLocale, DevToolsTab, PanelMode } from '../types.js';
+import { DEFAULT_BUTTON_INSET } from '../shell/buttonInset.js';
+import type { ButtonInset, Corner, DevToolsLocale, DevToolsTab, PanelMode } from '../types.js';
 
 const PREFIX = 'mock-tools.devtools.';
 
@@ -11,6 +12,9 @@ export class MockStorage {
   readonly locale = new KeyStorage<DevToolsLocale>(`${PREFIX}locale`);
   readonly buttonCorner = new KeyStorage<Corner>(`${PREFIX}buttonCorner`, {
     defaultValue: 'bottom-left',
+  });
+  readonly buttonInset = new KeyStorage<ButtonInset>(`${PREFIX}buttonInset`, {
+    defaultValue: DEFAULT_BUTTON_INSET,
   });
   readonly panelWidthPct = new KeyStorage<number>(`${PREFIX}panelWidthPct`, { defaultValue: 65 });
   readonly panelHeightPct = new KeyStorage<number>(`${PREFIX}panelHeightPct`, { defaultValue: 65 });

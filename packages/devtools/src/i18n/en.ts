@@ -21,6 +21,15 @@ export const en = {
     locale: 'Locale',
     button: 'Launcher button',
     corner: 'Position',
+    inset: 'Edge offsets',
+    insetHint: 'Distance from viewport edges. Use to clear React Query / other FAB icons.',
+    insetSides: {
+      top: 'Top (px)',
+      right: 'Right (px)',
+      bottom: 'Bottom (px)',
+      left: 'Left (px)',
+    },
+    insetApplyError: 'Enter numbers from 0 to 500',
     hidden: 'Hide launcher',
     hiddenHint: 'Panel stays available via Ctrl+Shift+M / ⌘⇧M',
     panelSize: 'Panel size',
@@ -38,8 +47,8 @@ export const en = {
     tables: 'Tables',
     count: 'Count',
     logging: 'API logging',
-    loggingOn: 'ON',
-    loggingOff: 'OFF',
+    on: 'ON',
+    off: 'OFF',
     loggingHint: 'api.use("logger", ConsoleLogger) / api.remove("logger")',
     corners: {
       'top-left': 'Top left',
@@ -249,6 +258,10 @@ export type Dictionary = {
     locale: string;
     button: string;
     corner: string;
+    inset: string;
+    insetHint: string;
+    insetSides: Record<'top' | 'right' | 'bottom' | 'left', string>;
+    insetApplyError: string;
     hidden: string;
     hiddenHint: string;
     panelSize: string;
@@ -266,8 +279,8 @@ export type Dictionary = {
     tables: string;
     count: string;
     logging: string;
-    loggingOn: string;
-    loggingOff: string;
+    on: string;
+    off: string;
     loggingHint: string;
     corners: Record<'top-left' | 'top-right' | 'bottom-left' | 'bottom-right', string>;
   };

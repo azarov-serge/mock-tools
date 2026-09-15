@@ -36,9 +36,33 @@
   min-width: 0;
 }
 
+.insetGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.insetField {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 11px;
+  color: var(--mt-text-muted);
+}
+
+.applyRow {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+
+.toggleAfterControls {
+  margin-top: 20px;
+}
+
 .sizeRow {
   display: grid;
-  grid-template-columns: 1fr 1fr auto;
+  grid-template-columns: 1fr 1fr;
   gap: 8px;
   align-items: end;
 }
@@ -127,37 +151,6 @@
 .btnPrimary:hover {
   background: var(--mt-primary-hover);
   border-color: var(--mt-primary-hover);
-}
-
-.check {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 12px;
-  color: var(--mt-text);
-  cursor: pointer;
-}
-
-.check input[type='checkbox'] {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 14px;
-  height: 14px;
-  margin: 0;
-  border: 1px solid var(--mt-border-strong);
-  border-radius: 2px;
-  background: var(--mt-input);
-  cursor: pointer;
-  flex-shrink: 0;
-}
-
-.check input[type='checkbox']:checked {
-  background: var(--mt-primary);
-  border-color: var(--mt-primary);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath fill='none' stroke='%23fff' stroke-width='2' d='M2.5 6l2.5 2.5 4.5-4.5'/%3E%3C/svg%3E");
-  background-size: 10px 10px;
-  background-position: center;
-  background-repeat: no-repeat;
 }
 
 .hint {
@@ -352,7 +345,7 @@
   box-shadow: inset 0 -2px 0 var(--mt-primary);
 }
 
-.loggingRow {
+.toggleRow {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -360,7 +353,7 @@
   width: 100%;
 }
 
-.loggingTitle {
+.toggleTitle {
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.04em;
@@ -368,7 +361,7 @@
   color: var(--mt-text-muted);
 }
 
-.loggingSwitch {
+.toggleSwitch {
   display: flex;
   align-items: center;
   gap: 8px;

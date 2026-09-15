@@ -3,6 +3,7 @@ import type { Api } from '@mock-tools/api';
 import { ConsoleLogger } from '@mock-tools/api';
 import { useDevTools } from '../context/DevToolsContext.js';
 import { mockStorage } from '../storage/MockStorage.js';
+import { ToggleRow } from './ToggleRow.js';
 import styles from './Settings.module.css';
 
 export const LOGGER_NAME = 'logger';
@@ -27,29 +28,12 @@ export function LoggingBlock() {
 
   return (
     <section className={styles.block}>
-      <div className={styles.loggingRow}>
-        <div className={styles.loggingTitle}>{dict.settings.logging}</div>
-        <div className={styles.loggingSwitch}>
-          <span className={enabled ? styles.switchLabelActive : styles.switchLabelMuted}>
-            {dict.settings.loggingOn}
-          </span>
-          <label className={styles.switch}>
-            <input
-              type="checkbox"
-              checked={enabled}
-              onChange={(e) => toggle(e.target.checked)}
-              aria-label={dict.settings.logging}
-            />
-            <span className={styles.switchTrack} aria-hidden="true">
-              <span className={styles.switchThumb} />
-            </span>
-          </label>
-          <span className={!enabled ? styles.switchLabelActive : styles.switchLabelMuted}>
-            {dict.settings.loggingOff}
-          </span>
-        </div>
-      </div>
-      <p className={styles.hint}>{dict.settings.loggingHint}</p>
+      <ToggleRow
+        title={dict.settings.logging}
+        checked={enabled}
+        onChange={toggle}
+        hint={dict.settings.loggingHint}
+      />
     </section>
   );
 }

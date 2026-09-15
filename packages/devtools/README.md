@@ -55,15 +55,16 @@ export function App() {
 | `api` | Required `Api` instance |
 | `locale?` | Force `en` \| `ru` (else storage → system) |
 | `defaultPosition?` | Seed launcher corner if storage empty (`bottom-left`) |
+| `defaultButtonInset?` | Seed edge offsets in **px** (`top` / `right` / `bottom` / `left`, default `12`) if storage empty — clear React Query / other FABs |
 | `defaultHidden?` | Seed hidden launcher if storage empty; panel via **Ctrl+Shift+M** / **⌘⇧M** |
 
-Persist prefix: `mock-tools.devtools.*` (`localStorage`).
+Persist prefix: `mock-tools.devtools.*` (`localStorage`), including `buttonInset`.
 
 ## Features
 
 ### Shell
 
-- Launcher **STORE** / **MOCKS** + status dots (4 corners)
+- Launcher **STORE** / **MOCKS** + status dots (4 corners + **px edge insets**)
 - STORE → Settings; MOCKS → Mocks
 - Panel: Esc / hotkey close; fullscreen; **no** click-outside close
 - Hidden launcher + hotkey still opens the panel
@@ -71,7 +72,7 @@ Persist prefix: `mock-tools.devtools.*` (`localStorage`).
 ### Settings
 
 - Locale EN/RU
-- Button corner + Hidden
+- Button corner + **edge offsets (px)** + Hidden
 - Panel size % + **Apply** (20–100); fullscreen
 - Database block: name, ok/error, Refresh, expand → tables + counts
 - Logging on/off (persist `mock-tools.devtools.logging`) → `api.use('logger', …)` / `api.remove('logger')`

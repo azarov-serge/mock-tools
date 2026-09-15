@@ -55,15 +55,16 @@ export function App() {
 | `api` | Обязательный экземпляр `Api` |
 | `locale?` | Принудительно `en` \| `ru` (иначе storage → system) |
 | `defaultPosition?` | Сид угла лаунчера, если storage пуст (`bottom-left`) |
+| `defaultButtonInset?` | Сид отступов в **px** (`top` / `right` / `bottom` / `left`, по умолчанию `12`), если storage пуст — чтобы не перекрывать React Query / другие FAB |
 | `defaultHidden?` | Сид скрытого лаунчера; панель через **Ctrl+Shift+M** / **⌘⇧M** |
 
-Persist: префикс `mock-tools.devtools.*` (`localStorage`).
+Persist: префикс `mock-tools.devtools.*` (`localStorage`), включая `buttonInset`.
 
 ## Возможности
 
 ### Shell
 
-- Лаунчер **STORE** / **MOCKS** + круги (4 угла)
+- Лаунчер **STORE** / **MOCKS** + круги (4 угла + **отступы в px**)
 - STORE → Settings; MOCKS → Mocks
 - Панель: Esc / хоткей; fullscreen; **без** закрытия по click-outside
 - Hidden лаунчера + хоткей всё ещё открывает панель
@@ -71,7 +72,7 @@ Persist: префикс `mock-tools.devtools.*` (`localStorage`).
 ### Settings
 
 - Locale EN/RU
-- Угол кнопки + Hidden
+- Угол кнопки + **отступы от краёв (px)** + Hidden
 - Размер панели % + **Применить** (20–100); fullscreen
 - Блок Database: имя, ok/error, Refresh, раскрытие → таблицы + count
 - Logging on/off (persist `mock-tools.devtools.logging`) → `api.use('logger', …)` / `api.remove('logger')`

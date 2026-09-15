@@ -9,7 +9,9 @@ import { generationConfigStore } from '../storage/GenerationConfigStore.js';
 import { mockStorage } from '../storage/MockStorage.js';
 import { responseOverrideStore } from '../storage/ResponseOverrideStore.js';
 import { pushChannelStore } from '../storage/PushChannelStore.js';
+import { normalizeButtonInset } from '../shell/buttonInset.js';
 import type {
+  ButtonInset,
   Corner,
   DevToolsLocale,
   DevToolsProps,
@@ -29,14 +31,19 @@ export function useDevToolsController({
   api,
   locale: localeProp,
   defaultPosition,
+  defaultButtonInset,
   defaultHidden,
 }: DevToolsProps): UseDevToolsControllerResult {
+  const seedInset = normalizeButtonInset(defaultButtonInset);
   const [mounted, setMounted] = useState(false);
   const [open, setOpen] = useState(false);
   const [tab, setTabState] = useState<DevToolsTab>(() => mockStorage.lastTab.getValue()!);
   const [locale, setLocaleState] = useState<DevToolsLocale>(() => resolveLocale(localeProp));
   const [corner, setCornerState] = useState<Corner>(
     () => mockStorage.buttonCorner.getValue(defaultPosition)!,
+  );
+  const [buttonInset, setButtonInsetState] = useState<ButtonInset>(() =>
+    normalizeButtonInset(mockStorage.buttonInset.getValue(seedInset)),
   );
   const [hidden, setHiddenState] = useState<boolean>(
     () => mockStorage.buttonHidden.getValue(defaultHidden)!,
@@ -200,6 +207,12 @@ export function useDevToolsController({
     setCornerState(next);
   }, []);
 
+  const setButtonInset = useCallback((next: ButtonInset) => {
+    const normalized = normalizeButtonInset(next);
+    mockStorage.buttonInset.setValue(normalized);
+    setButtonInsetState(normalized);
+  }, []);
+
   const setHidden = useCallback((next: boolean) => {
     mockStorage.buttonHidden.setValue(next);
     setHiddenState(next);
@@ -224,6 +237,8 @@ export function useDevToolsController({
     setLocale,
     corner,
     setCorner,
+    buttonInset,
+    setButtonInset,
     hidden,
     setHidden,
     mode,

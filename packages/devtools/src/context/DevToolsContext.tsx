@@ -2,7 +2,7 @@ import { createContext, useContext, type ReactNode } from 'react';
 import type { Api, DbStatus } from '@mock-tools/api';
 import type { Dictionary } from '../i18n/index.js';
 import type { LauncherStatus } from '../shell/status.js';
-import type { Corner, DevToolsLocale, DevToolsTab, PanelMode } from '../types.js';
+import type { ButtonInset, Corner, DevToolsLocale, DevToolsTab, PanelMode } from '../types.js';
 
 export type DevToolsContextValue = {
   api: Api;
@@ -11,6 +11,8 @@ export type DevToolsContextValue = {
   setLocale: (locale: DevToolsLocale) => void;
   corner: Corner;
   setCorner: (corner: Corner) => void;
+  buttonInset: ButtonInset;
+  setButtonInset: (inset: ButtonInset) => void;
   hidden: boolean;
   setHidden: (hidden: boolean) => void;
   mode: PanelMode;

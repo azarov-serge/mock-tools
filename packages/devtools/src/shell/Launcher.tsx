@@ -1,11 +1,12 @@
 import { useDevTools } from '../context/DevToolsContext.js';
 import { formatMessage } from '../i18n/index.js';
-import type { Corner, StatusTone } from '../types.js';
+import type { StatusTone } from '../types.js';
+import { buttonInsetStyle } from './buttonInset.js';
 import styles from './Launcher.module.css';
 import '../theme.css';
 
 export function Launcher() {
-  const { hidden, corner, dict, launcherStatus: status, openPanel } = useDevTools();
+  const { hidden, corner, buttonInset, dict, launcherStatus: status, openPanel } = useDevTools();
 
   if (hidden) return null;
 
@@ -17,7 +18,11 @@ export function Launcher() {
   const mocksTitle = dict.tooltip[status.mocksTooltipKey];
 
   return (
-    <div className={`${styles.root} ${cornerClass(corner)}`} data-mock-tools-launcher="">
+    <div
+      className={styles.root}
+      style={buttonInsetStyle(corner, buttonInset)}
+      data-mock-tools-launcher=""
+    >
       <div className={styles.button}>
         <button type="button" className={styles.row} onClick={openPanel} title={dbTitle}>
           <span className={styles.label}>STORE</span>
@@ -30,20 +35,6 @@ export function Launcher() {
       </div>
     </div>
   );
-}
-
-function cornerClass(corner: Corner): string {
-  switch (corner) {
-    case 'top-left':
-      return styles.topLeft;
-    case 'top-right':
-      return styles.topRight;
-    case 'bottom-right':
-      return styles.bottomRight;
-    case 'bottom-left':
-    default:
-      return styles.bottomLeft;
-  }
 }
 
 function toneClass(tone: StatusTone): string {

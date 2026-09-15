@@ -1,5 +1,6 @@
 import { ButtonBlock } from './ButtonBlock.js';
 import { DatabaseBlock } from './DatabaseBlock.js';
+import { HiddenBlock } from './HiddenBlock.js';
 import { LocaleBlock } from './LocaleBlock.js';
 import { LoggingBlock } from './LoggingBlock.js';
 import { PanelSizeBlock } from './PanelSizeBlock.js';
@@ -12,6 +13,7 @@ export function SettingsTab() {
       <ButtonBlock />
       <PanelSizeBlock />
       <DatabaseBlock />
+      <HiddenBlock />
       <LoggingBlock />
     </div>
   );

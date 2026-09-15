@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDevTools } from '../context/DevToolsContext.js';
+import { ToggleRow } from './ToggleRow.js';
 import styles from './Settings.module.css';
 
 export function PanelSizeBlock() {
@@ -54,6 +55,8 @@ export function PanelSizeBlock() {
             onChange={(e) => setHeightDraft(e.target.value)}
           />
         </div>
+      </div>
+      <div className={styles.applyRow}>
         <button
           type="button"
           className={`${styles.btnPrimary} ${styles.sizeApply}`}
@@ -64,14 +67,13 @@ export function PanelSizeBlock() {
         </button>
       </div>
       {error ? <p className={styles.error}>{error}</p> : null}
-      <label className={styles.check} style={{ marginTop: 10 }}>
-        <input
-          type="checkbox"
+      <div className={styles.toggleAfterControls}>
+        <ToggleRow
+          title={dict.settings.fullscreen}
           checked={mode === 'fullscreen'}
-          onChange={(e) => setMode(e.target.checked ? 'fullscreen' : 'sized')}
+          onChange={(next) => setMode(next ? 'fullscreen' : 'sized')}
         />
-        {dict.settings.fullscreen}
-      </label>
+      </div>
     </section>
   );
 }
